@@ -14,18 +14,18 @@ $(document).ready(function(){
 
     $('button').on('click', function() {
         $.ajax({
-            url: "https://itunes.apple.com/search?term=" + $('#artistName').val() +"&limit=" + $('#numObj').val(),
+            url: "https://itunes.apple.com/search?term=" + $('#artistName').val() +"&limit=50" /*+ $('#numObj').val()*/,
             type: 'GET',
             crossDomain: true,
             dataType: 'jsonp',
             success: function (result) {
-                if(($('#artistName').val() === "") || (+$('#numObj').val() > 0)){
+                if(($('#artistName').val() !== "") /*&& (+$('#numObj').val() > 0)*/){
                     console.log(result);
                     $(document).find('#display').hide();
                     $(document).find('#display').html(popTable(result));
                     $(document).find('#display').show();
                 }else{
-                    alert('Input valid artist name and number and search items');
+                    alert('Input valid artist name');
                 }
             },
             error: function () {
